@@ -113,18 +113,15 @@
             this.Scanned.AutoSize = true;
             this.Scanned.Location = new System.Drawing.Point(412, 254);
             this.Scanned.Name = "Scanned";
-            this.Scanned.Size = new System.Drawing.Size(35, 13);
+            this.Scanned.Size = new System.Drawing.Size(0, 13);
             this.Scanned.TabIndex = 7;
-            this.Scanned.Text = "label1";
             // 
             // Scaning
             // 
-            this.Scaning.AutoSize = true;
-            this.Scaning.Location = new System.Drawing.Point(412, 293);
+            this.Scaning.Location = new System.Drawing.Point(412, 282);
             this.Scaning.Name = "Scaning";
-            this.Scaning.Size = new System.Drawing.Size(35, 13);
+            this.Scaning.Size = new System.Drawing.Size(238, 47);
             this.Scaning.TabIndex = 8;
-            this.Scaning.Text = "label2";
             // 
             // timer1
             // 
@@ -146,7 +143,7 @@
             this.поискToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(604, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(662, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -246,7 +243,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(604, 435);
+            this.ClientSize = new System.Drawing.Size(662, 435);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);

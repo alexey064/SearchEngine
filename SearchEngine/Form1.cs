@@ -1,6 +1,4 @@
-﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
-// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -27,6 +25,7 @@ namespace SearchEngine
                     button1.Text = "Пауза";
                     ThreadPool.QueueUserWorkItem(Start);
                     PrepareUI(false);
+                    button2.Enabled = false;
                     if (!search.Restored)
                     {
                         Time.Text = "0:0";
@@ -47,6 +46,7 @@ namespace SearchEngine
         private void PrepareUI(bool state)
         {//данный метод блокирует и разблокирует ui по необходимости. 
             textBox1.Enabled = state;
+            поискToolStripMenuItem.Enabled = state;
             textBox2.Enabled = state;
             textBox3.Enabled = state;
             button3.Enabled = state;
