@@ -36,16 +36,17 @@ namespace SearchEngine
             {
                 DoSearchContent = false;
             }
+            else DoSearchContent = true;
             if (SearchType==null)//Если не выбран тип поиска, то ставим тип поиска по умолчанию
             {
                 SearchType = new SearchWithoutParams();
             }
-            if (StartDir == null)//если не задан каталог, с которого начинаем поиск, выводим соответствующее сообщение
+            if (string.IsNullOrEmpty(StartDir))//если не задан каталог, с которого начинаем поиск, выводим соответствующее сообщение
             {
                 output("Не задан путь для поиска", 3);
                 return;
             }
-            if (SearchString == null)//если не задано имя файла, которое мы ищем, то выводим соответствующее сообщение
+            if (string.IsNullOrEmpty(SearchString))//если не задано имя файла, которое мы ищем, то выводим соответствующее сообщение
             {
                 output("Не задано имя файла для поиска", 3);
                 return;
@@ -122,8 +123,7 @@ namespace SearchEngine
                     }
                     else { RestoredElem = element; Restored = true; return; }
                 }
-                else try
-                    {
+                else
                         if (Directory.Exists(element)) //Если просматриваемый элемент является папкой, то ищем содержимое данной папки
                         {
                             Find(element);
@@ -141,8 +141,7 @@ namespace SearchEngine
                                 }
                             }
                         }
-                    }
-                    catch (Exception e) { }
+                    
             }
         }
         private void Find(string path)
@@ -155,13 +154,16 @@ namespace SearchEngine
             string[] CollapsedPath = RestoredElem.Split('\\');
             string temp = "";
             RestLevel = 0;
-            while (temp != StartDir)
+            int startlevel = StartDir.Split('\\').Length;
+            for (int i = 0; i < startlevel; i++)
             {
                 temp += CollapsedPath[RestLevel];
-                temp += "\\";
-                RestLevel++;
+                if (i!=startlevel-1)
+                {
+                    temp += "\\";
+                    RestLevel++;
+                }
             }
-            RestLevel--;
             CurrentDir = temp;
         }
 

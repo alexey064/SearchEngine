@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SearchEngine
 {
@@ -30,7 +28,11 @@ namespace SearchEngine
                                 if (DoSearchByContent) 
                                 {
                                     SearchByContent search = new SearchByContent();
-                                    search.Search(FullPath, contentSearch);
+                                    if (search.Search(FullPath, contentSearch))
+                                    {
+                                        return true;
+                                    }
+                                    else return false;
                                 }
                                 return true;
                             }
@@ -90,8 +92,14 @@ namespace SearchEngine
             if (DoSearchByContent)
             {
                 SearchByContent search = new SearchByContent();
-                search.Search(FullPath, contentSearch);
+                if (search.Search(FullPath, contentSearch))
+                {
+                    return true;
+                }
+                else return false;
+                
             }
+            
             return true;
         }
 
@@ -128,7 +136,11 @@ namespace SearchEngine
             if (DoSearchByContent)
             {
                 SearchByContent search = new SearchByContent();
-                search.Search(FullPath, contentSearch);
+                if (search.Search(FullPath, contentSearch))
+                {
+                    return true;
+                }
+                else return false;
             }
             return true;
         }
@@ -162,6 +174,10 @@ namespace SearchEngine
             if (String.IsNullOrEmpty(FullName))
             {
                 return false;
+            }
+            if (SearchName.Length != FullName.Length)
+            {
+                return true;
             }
             for (int i = 0; i < SearchName.Length; i++)
             {

@@ -68,7 +68,11 @@ namespace SearchEngine
         {// кнопка выбора папки
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             folderBrowser.ShowDialog();
-            textBox3.Text = folderBrowser.SelectedPath;
+            if (!string.IsNullOrEmpty(folderBrowser.SelectedPath))
+            {
+                textBox3.Text = folderBrowser.SelectedPath;
+            }
+            
         }
 
         private void Start(object state)
@@ -81,7 +85,7 @@ namespace SearchEngine
                 timer1.Stop();
                 this.Invoke((MethodInvoker)(() => PrepareUI(true)));
             }
-            SaveAfter();
+            this.Invoke((MethodInvoker)(()=>SaveAfter()));
         }
 
         public void Restore()
@@ -123,12 +127,15 @@ namespace SearchEngine
         }
         public void SaveAfter()
         {//сохраняет в файл параметры последнего поиска
-            string Filename = textBox3.Text;
             using (StreamWriter stream = new StreamWriter("TempInfo", false))
             {
                 stream.WriteLine(textBox2.Text);// имя для поиса содержимого
                 stream.WriteLine(textBox3.Text); //имя для поиска
                 stream.WriteLine(textBox1.Text); // путь поиска
+                if (!string.IsNullOrEmpty(search.RestoredElem))
+                {
+                    stream.WriteLine(search.RestoredElem);
+                }
             }
         }
 
@@ -168,7 +175,7 @@ namespace SearchEngine
             {
                 List<string> AllNodes = treeView1.GetAll();
 
-                using (StreamWriter writer = new StreamWriter("TempRes"))
+                using (StreamWriter writer = new StreamWriter("TempRes",false))
                 {
                     foreach (string stroka in AllNodes)
                     {
